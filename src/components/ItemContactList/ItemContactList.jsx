@@ -8,6 +8,8 @@ import css from "components/ItemContactList/ItemContactList.module.css";
 
 export const ItemContactList = () => {
   const contacts = useSelector(getContacts);
+  
+  console.log('contacts', contacts);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
