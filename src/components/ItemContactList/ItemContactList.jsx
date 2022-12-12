@@ -1,31 +1,31 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts } from "redux/selector";
-import { getFilter } from "redux/selector";
+import { selectContacts } from "redux/selector";
+import { selectFilter } from "redux/selector";
 import { getFilterContacts } from 'helpers/filteredContacts';
-import { deleteContact } from "redux/contactsSlice";
+// import { deleteContact } from "redux/contactsSlice";
 import css from "components/ItemContactList/ItemContactList.module.css";
 
 export const ItemContactList = () => {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   
-  console.log('contacts', contacts);
-  const filter = useSelector(getFilter);
+  // console.log('contacts', contacts);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   const filteredContacts = getFilterContacts(contacts, filter);
-  const addContactItem = filteredContacts.map(({ id, name, number }) => {
+  const addContactItem = filteredContacts.map(({ id, name, phone }) => {
     return (
       <li className={css.contacts__item} key={id}>
         <div className={css.contacts__box}>
           <h3 className={css.contacts__title}>{name}: </h3>
-          <span className={css.contacts__number}> {number}</span>
+          <span className={css.contacts__number}> {phone}</span>
         </div>
 
         <button
           type="button"
           className={css.btnDelete}
-          onClick={() => dispatch(deleteContact(id))}
+          // onClick={() => dispatch(deleteContact(id))}
         >
           Delete
         </button>

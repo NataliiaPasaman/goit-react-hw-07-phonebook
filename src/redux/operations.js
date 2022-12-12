@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://api.....'; //доробити, коли буде створений бекенд
+axios.defaults.baseURL = 'https://6391161c65ff4183112643d6.mockapi.io/';
 
 export const fetchContacts = createAsyncThunk(
     'contacts/fetchAll',
@@ -38,9 +38,3 @@ export const deleteContact = createAsyncThunk(
         }
     }
 );
-
-
-/** 
- * fetchContacts - одержання масиву контактів (метод GET) запитом. Базовий тип екшену "contacts/fetchAll".
-addContact - додавання контакту (метод POST). Базовий тип екшену "contacts/addContact".
-deleteContact - видалення контакту (метод DELETE). Базовий тип екшену "contacts/deleteContact". */
