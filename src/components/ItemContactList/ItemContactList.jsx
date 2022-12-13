@@ -4,12 +4,23 @@ import { selectContacts } from "redux/selector";
 import { selectFilter } from "redux/selector";
 import { getFilterContacts } from 'helpers/filteredContacts';
 import { deleteContact } from "redux/operations";
+import { Notify } from 'notiflix';
 import css from "components/ItemContactList/ItemContactList.module.css";
 
 export const ItemContactList = () => {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
+
+  const handleDelete = (id, name) => {
+    dispatch(deleteContact(id));
+    Notify.info(`${name} deleted from your phonebook`, {
+      position: 'center-top',
+      opacity: 0.9,
+      fontSize: '20px',
+      width: '320px',
+    })
+  }
 
   const filteredContacts = getFilterContacts(contacts, filter);
   const addContactItem = filteredContacts.map(({ id, name, phone }) => {
@@ -23,7 +34,7 @@ export const ItemContactList = () => {
         <button
           type="button"
           className={css.btnDelete}
-          onClick={() => dispatch(deleteContact(id))}
+          onClick={() => handleDelete(id, name)}
         >
           Delete
         </button>

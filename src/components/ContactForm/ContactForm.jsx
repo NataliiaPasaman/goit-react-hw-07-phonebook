@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'redux/operations';
 import { selectContacts } from "redux/selector";
+import { Notify } from 'notiflix';
 import css from 'components/ContactForm/ContactForm.module.css';
 
 export const ContactForm = () => {
@@ -15,7 +16,12 @@ export const ContactForm = () => {
 
     if(isfindContact) {
       form.reset();
-      alert(`${name} is already in contacts`);
+      Notify.failure(`${name} is already in contacts`, {
+        position: 'center-top',
+        opacity: 0.9,
+        fontSize: '20px',
+        width: '320px',
+      });
       return;
     }
 
@@ -23,6 +29,12 @@ export const ContactForm = () => {
       name,
       phone: form.elements.number.value,
     }));
+    Notify.success(`${name} add to your phonebook!`, {
+      position: 'center-top',
+      opacity: 0.9,
+      fontSize: '20px',
+      width: '320px',
+    });
     form.reset();
   };
 
