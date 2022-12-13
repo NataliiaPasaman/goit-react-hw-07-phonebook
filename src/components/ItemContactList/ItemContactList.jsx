@@ -3,13 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectContacts } from "redux/selector";
 import { selectFilter } from "redux/selector";
 import { getFilterContacts } from 'helpers/filteredContacts';
-// import { deleteContact } from "redux/contactsSlice";
+import { deleteContact } from "redux/operations";
 import css from "components/ItemContactList/ItemContactList.module.css";
 
 export const ItemContactList = () => {
   const contacts = useSelector(selectContacts);
-  
-  // console.log('contacts', contacts);
   const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
@@ -25,7 +23,7 @@ export const ItemContactList = () => {
         <button
           type="button"
           className={css.btnDelete}
-          // onClick={() => dispatch(deleteContact(id))}
+          onClick={() => dispatch(deleteContact(id))}
         >
           Delete
         </button>
