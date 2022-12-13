@@ -17,6 +17,7 @@
 
 .contacts__title {
     display: inline-block;
+    width: 320px;
 }
 
 .contacts__number {
